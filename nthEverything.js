@@ -87,7 +87,10 @@ processPeriod = function(classNames, textArray) {
             newText += createSpan(className, textArray[n]);
         }
     }
-    return new DOMParser().parseFromString(newText, "text/html").children[0];
+    let html = new DOMParser().parseFromString(newText, "text/html").children[0];
+    let div = document.createElement('div');
+    div.innerHTML = html.querySelector('body').innerHTML;
+    return div;
 },
 
 getClassNames = function(parsedStyle, length, pFunc) {
